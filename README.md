@@ -35,13 +35,11 @@ Su uso es bastante sencillo, cada capítulo lo ponemos en un fichero aparte (exc
 
 > **AVISO IMPORTANTE**: Cuando se usa la compilación separada, el resto de capítulos *no existen* con lo cual las referencias a dichos capítulos (los no incluidos) aparecerán con el típico **??**. Además, a veces cuando se modifica el `\includeonly` la numeración de las páginas hace saltos erróneos, los índices muestran información incorrecta,... mi consejo es que cada vez que se modifique el comando `\includeonly`, ya sea el capítulo incluido o si se quita o pone de nuevo, se haga una compilación limpia, es decir, borrar los archivos temporales y compilar.
 
-## Algunas mejoras menores
+## Referencia Cruzada
 
 - `hyperref`: al cargar este paquete todas las referencias y los índices se convierten en hiperenlaces lo que facilita la lectura del trabajo en un ordenador.
 - `tablas`: algunas simplificaciones en las tablas:
   - Los comandos para cambiar el tamaño de las fuentes en las tablas se usan sobre el entorno `tabular` en lugar de ser aplicados celda a celda.
-  - Se introduce un nuevo entorno, `stripedtable` que pinta de diferentes colores filas alternas. Es necesario usar los comandos `\showrowcolors` y `\hiderowcolors` para que tenga efecto. Esto facilita la lectura de tablas muy anchas.
-  - Se usa un ejemplo de uso del entorno `threeparttable` que sirve para incluir notas a pie de tabla en lugar de notas a pie de página.
-- Se usa un ejemplo del entorno `align` que se recomienda usar en lugar de `equation`. También se han hecho algunos arreglos menores en las expresiones.
+
 
 
