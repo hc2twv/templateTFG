@@ -14,3 +14,23 @@ Para empezar a usarla simplemente escribe
 git clone https://github.com/hc2twv/templateTFG.git
 ```
 desde una terminal y comenzar a modificar los archivos o directamente con el botón de `Clonar o descargar` en la página del proyecto o mediante el enlace: https://github.com/jonatanlv/templateTFG/archive/master.zip.
+
+Si detectas un fallo o crees que algo se puede/debe hacer de otra forma te invito a colaborar en la plantilla, cualquier sugerencia será bienvenida.
+
+## Estructura de la plantilla simplificada
+
+Los comandos `\frotmatter`, `\mainmatter`, `\appendix` y `\backmatter` simplifican la estructura del TFG ya que hacen los cambios en los estilos automáticamente:
+- `\frontmatter`: Numeración de páginas usando números romanos y los capítulos no son numerados. En esta parte irán (en este orden) la página de título, agradecimientos, resumen, abstract y los índices: de figuras, de tablas y de algoritmos.
+- `\mainmatter`: Se reinicia la numeración de páginas, se usan números arábigos y los capítulos están numerados. En esta parte va el cuerpo de la tesis.
+- `\appendix`: La numeración de las páginas continúa sin ninguna modificación y los capítulos pasan a numerarse con letras desde la A. En esta parte se incluye material no esencial para la exposición principal. Algunos ejemplos pueden ser detalles de implementación no relevantes, anexos incluidos en el trabajo...
+- `\backmatter`: La numeración de las páginas continúa sin ninguna modificación y los capítulos dejan de numerarse. Aquí suele incluirse únicamente el índice de términos (si se usa) y la bibliografía (esto no puede faltar).
+
+## Compilación separada del documento
+
+A medida que la tesis va aumentando en tamaño, y sobre todo tras la inclusión de imágenes, el tiempo de compilado aumenta considerablemente. Lo normal, sobre todo al principio, es que la mayoría del tiempo se escriba en un solo capítulo.
+
+La plantilla se ha estructurado de forma modular para permitir la compilación de los capítulos por separado. Para esto hemos usado el paquete `newclude` que incluye los comandos `\includeonly` y `\include*`.
+
+Su uso es bastante sencillo, cada capítulo lo ponemos en un fichero aparte (excepto los capítulos de agradecimientos, resumen y abstract que van en un mismo fichero ya que no deben ser muy extensos). En el punto donde queramos incluir el capítulo, en el archivo principal (*TemplateTFG.tex*), usamos `\include*{nombre_fichero_sin_extension}`. Cuando queramos compilar solamente dicho capítulo, en el preámbulo usamos `\includeonly{nombre_fichero_sin_extension}`.
+
+> **AVISO IMPORTANTE**: Cuando se usa la compilación separada, el resto de capítulos *no existen* con lo cual las referencias a dichos capítulos (los no incluidos) aparecerán con el típico **??**. Además, a veces cuando se modifica el `\includeonly` la numeración de las páginas hace saltos erróneos, los índices muestran información incorrecta,... mi consejo es que cada vez que se modifique el comando `\includeonly`, ya sea el capítulo incluido o si se quita o pone de nuevo, se haga una compilación limpia, es decir, borrar los archivos temporales y compilar.
