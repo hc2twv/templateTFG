@@ -43,3 +43,5 @@ Su uso es bastante sencillo, cada capítulo lo ponemos en un fichero aparte (exc
   - Se introduce un nuevo entorno, `stripedtable` que pinta de diferentes colores filas alternas. Es necesario usar los comandos `\showrowcolors` y `\hiderowcolors` para que tenga efecto. Esto facilita la lectura de tablas muy anchas.
   - Se usa un ejemplo de uso del entorno `threeparttable` que sirve para incluir notas a pie de tabla en lugar de notas a pie de página.
 - Se usa un ejemplo del entorno `align` que se recomienda usar en lugar de `equation`. También se han hecho algunos arreglos menores en las expresiones.
+
+
