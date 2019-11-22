@@ -27,6 +27,7 @@ BoldItalicFont=arialbi.ttf,
 \usepackage{xpatch}
 \usepackage{blindtext}
 \usepackage{sectsty}
+\usepackage{appendix}
 
 
 %\def\UrlBreaks{\do\/\do-}
@@ -184,8 +185,14 @@ BoldItalicFont=arialbi.ttf,
 \bibliography{referencias}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% APÉNDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \appendix
-% ANEXOS
+\renewcommand{\appendixtocname}{AP\'ENDICES}
+\renewcommand{\appendixname}{AP\'ENDICES}
+\renewcommand{\appendixpagename}{AP\'ENDICES}
+\addappheadtotoc
+\appendixpage
+
 \include*{apendices}
 
 
