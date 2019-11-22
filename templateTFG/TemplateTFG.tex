@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper,twoside]{book}
+% habilitamos Arial en el documento
+\usepackage{mathptmx}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+\usepackage{fontspec}
+\usepackage{url}
+
+\setromanfont[
+BoldFont=arialbd.ttf,
+ItalicFont=ariali.ttf,
+BoldItalicFont=arialbi.ttf,
+]{arial.ttf}
+
+%Habilitamos el TOC hasta subsubsection
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5}
+
+\usepackage{afterpage}
+\usepackage{ragged2e}
+\usepackage[none]{hyphenat}
+\usepackage{xpatch}
+\usepackage{blindtext}
+\usepackage{sectsty}
+
+
+%\def\UrlBreaks{\do\/\do-}
+\usepackage{hyperref}
+%\usepackage{breakurl}
+%\usepackage[breaklinks]{hyperref} % Referencias e índices son enlaces al contenido. La opción hidelinks hace que se vean como texto normal
+
+
+\usepackage{newclude} % Permite usar \include* que es igual que \include pero sin saltos de página adicionales
+%\includeonly{cap01} % con este comando solo se incluirán los archivos mencionados haciendo que la compilación sea mucho más rápida. Referencias a otros capítulos quedarán rotas, se recomienda una compilación limpia cada vez que se cambie esta línea (es decir, borrar ficheros intermedios cuando se descomenta/comenta/cambia el argumento)
+
+\usepackage[top=3.0cm, bottom=2.0cm,left= 2.5cm,right=2cm]{geometry}
+
+\usepackage{csquotes} % Paquete recomendado por biblatex cuando se usa babel
+
+\usepackage{graphicx} % Gráficos y colores
+\usepackage{amsmath,amssymb}
+\usepackage{float}
+\usepackage{changepage}
+\usepackage{subcaption}
+
+\usepackage[table]{xcolor} % Necesaria la opción table para usar filas de colores en las tablas.
+\usepackage{lipsum} % Para usar texto de relleno, sirve para tener una idea de cómo queda
+
+\usepackage{booktabs} % para los comandos toprule, midrule, cmidrule y bottomrule: líneas horizontales de las tablas
+\usepackage{threeparttable} % Entorno para las notas a pie de tabla
+
+%--- Paquete algorithm y personalizaciones ---%
+\usepackage{algorithm,algorithmic}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\listalgorithmname}{\'INDICE DE ALGORITMOS}
+
+\usepackage{multirow}
+
+\usepackage{tikz}
+
+%--- Formato de títulos ---
+\usepackage{titlesec} % Librería para cambiar el formato de \chapter, \section, ...
+\titleformat{\chapter}[display]
+{\bfseries\centering\fontsize{16pt}{16}\selectfont}{\centering\chaptertitlename \thechapter}{24pt}{}
+\titlespacing*{\chapter}
+{0pt}{30pt}{40pt}
+\renewcommand{\chaptertitlename}{\fontsize{24pt}{24}\selectfont CAP\'ITULO }
+\newpagestyle{mystyle}{\setfoot[][\thepage][]{}{\thepage}{}}
+\pagestyle{mystyle}
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\itshape}{\theparagraph}{1.5em}{} % formato de \paragraph: fuente y tamaño normales y cursiva. 1em de separación
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{1.5em}{} % formato de \subparagraph: fuente y tamaño normales y cursiva. 1em de separación
+
+%Renombrar los epigrafos
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figurename}{Figura}
+
+
+
+%--- AJUSTES MANUALES PARA CODIGOS ---%
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily\justifying},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+ }
+ 
+\renewcommand\maketitle{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENTO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\sloppy 
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TÍTULO, RESUMEN, AGRADECIMIENTOS Y DEDICATORIA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	TÍTULO
+% Página con el título, hay que entrar en title.tex para modificar: nombre del trabajo, autor y fecha
+
+\include*{title}
+
+% DEDICATORIA,AGRADECIMIENTO,DECLARACION_EXPRESA Y FIRMAS
+\include*{adicionales}
+
+\frontmatter
+
+% RESUMEN
+\include*{resumen}
+
+%	ÍNDICE
+%  INDICE GENERAL FORMATO
+\renewcommand*{\contentsname}{\'INDICE GENERAL}
+\tableofcontents  % indice de contenidos
+
+% ABREVIATURAS
+\include*{abreviaturas}
+
+% SIMBOLOGIA
+\include*{simbologia}
+
+%	INDICE DE FIGURAS, TABLAS Y ALGORITMOS
+\renewcommand*{\listfigurename}{\'INDICE DE FIGURAS}
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\renewcommand*{\listtablename}{\'INDICE DE TABLAS}
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+% Si no hay muchos algoritmos no tiene mucho sentido esta lista
+\addcontentsline{toc}{chapter}{\listalgorithmname}
+\listofalgorithms 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CUERPO DEL TFG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+%reconfigurar el titulo de cada capitulo (DON't TOUCH)
+\titleformat{\chapter}[display]
+{\bfseries\filright\fontsize{16pt}{16}\selectfont }{\centering\chaptertitlename \thechapter}{24pt}{\thechapter. \,}
+
+% TABLAS, FIGURAS, EXPRESIONES MATEMÁTICAS Y ALGORITMOS
+\include*{cap01}
+% CONTENIDOS DEL TFG
+\include*{cap02}
+% REFERENCIAS
+\include*{cap03}
+% CONCLUSIONES Y LÍNEAS FUTURAS DE TRABAJO
+\include*{cap04}
+% AGREGAR MAS CAPITULO
+\include*{cap05}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BACKMATTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+\titleformat{\chapter}[display]
+{\bfseries\centering\fontsize{24pt}{28}\selectfont}{\centering\chaptertitlename \thechapter}{24pt}{}
+\titlespacing*{\chapter}
+{0pt}{30pt}{40pt}
+%%% Bibliografía bibname
+\renewcommand{\bibname}{BIBLIOGRAF\'IA}
+\addcontentsline{toc}{chapter}{BIBLIOGRAF\'IA} % Para que salga en el índice general
+\bibliographystyle{ieeetr}
+\bibliography{referencias}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% APÉNDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+% ANEXOS
+\include*{apendices}
+
+
+\end{document}
