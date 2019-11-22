@@ -34,3 +34,18 @@ La plantilla se ha estructurado de forma modular para permitir la compilación d
 Su uso es bastante sencillo, cada capítulo lo ponemos en un fichero aparte (excepto los capítulos de agradecimientos, resumen y abstract que van en un mismo fichero ya que no deben ser muy extensos). En el punto donde queramos incluir el capítulo, en el archivo principal (*TemplateTFG.tex*), usamos `\include*{nombre_fichero_sin_extension}`. Cuando queramos compilar solamente dicho capítulo, en el preámbulo usamos `\includeonly{nombre_fichero_sin_extension}`.
 
 > **AVISO IMPORTANTE**: Cuando se usa la compilación separada, el resto de capítulos *no existen* con lo cual las referencias a dichos capítulos (los no incluidos) aparecerán con el típico **??**. Además, a veces cuando se modifica el `\includeonly` la numeración de las páginas hace saltos erróneos, los índices muestran información incorrecta,... mi consejo es que cada vez que se modifique el comando `\includeonly`, ya sea el capítulo incluido o si se quita o pone de nuevo, se haga una compilación limpia, es decir, borrar los archivos temporales y compilar.
+
+## Algunas mejoras menores
+
+- `hyperref`: al cargar este paquete todas las referencias y los índices se convierten en hiperenlaces lo que facilita la lectura de la tesis en un ordenador.
+- `tablas`: algunas simplificaciones en las tablas:
+  - Los comandos para cambiar el tamaño de las fuentes en las tablas se usan sobre el entorno `tabular` en lugar de ser aplicados celda a celda.
+  - Se introduce un nuevo entorno, `stripedtable` que pinta de diferentes colores filas alternas. Es necesario usar los comandos `\showrowcolors` y `\hiderowcolors` para que tenga efecto. Esto facilita la lectura de tablas muy anchas.
+  - Se usa un ejemplo de uso del entorno `threeparttable` que sirve para incluir notas a pie de tabla en lugar de notas a pie de página.
+- Se usa un ejemplo del entorno `align` que se recomienda usar en lugar de `equation`. También se han hecho algunos arreglos menores en las expresiones.
+
+## Mejoras por hacer (ayuda bienvenida)
+
+- Incluir `biblatex` para la gestión de bibliografías. Es mucho más cómodo que andar incluyendo las referencias una a una.
+- Hacer un estilo de bibliografía UPM. Esto se escapa un poco de mis conocimientos de latex, pero estaría bien hacer algo tomando como base el paquete `biblatex-apa` (esto es completamente inútil si no se usa `biblatex`).
+- Hacer algún tipo de `lint` con errores habituales. O por lo menos una lista de errores comunes, errores del tipo escribir `tabla 5.1` (incorrecto) en lugar de `Tabla 5.1`(correcto). Esto nos puede ahorrar tiempo en la fase de corrección.
