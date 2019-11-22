@@ -18,8 +18,8 @@ desde una terminal y comenzar a modificar los archivos o directamente con el bot
 Si detectas un fallo o crees que algo se puede/debe hacer de otra forma te invito a colaborar en la plantilla, cualquier sugerencia será bienvenida.
 
 # Compilación en OVERLEAF 
-Compilador: XelaTex
-Archivo Principal: TemplateTFG.tex
+- `Compilador`: XelaTex
+- `Archivo Principal`: TemplateTFG.tex
 
 
 ## Estructura de la plantilla simplificada
