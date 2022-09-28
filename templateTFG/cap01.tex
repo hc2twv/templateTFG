@@ -38,7 +38,7 @@ Modelo de Tablas, para referencia la tabla se usa el (label) y se lo llama asi: 
 \begin{table}[!htbp]
 \centering
 \small
-\caption{{\fontsize{11pt}{13}\selectfont \textbf{Modelo General de las Tablas \cite{upm56279}}}}
+\caption{{\fontsize{11pt}{13}\selectfont Modelo General de las Tablas \cite{upm56279}}}
 \label{tbl:modelo}
 \begin{tabular}{@{}cccc@{}}
 \toprule
@@ -57,7 +57,7 @@ Modelo de las Figuras, para referenciar las figuras se usa el (label) y se lo ll
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=1.0\linewidth]{recursos/Figure1a.png}
-    \caption{\textbf{Modelo de las Figuras}}
+    \caption{Modelo de las Figuras}
     \label{fig:figura1a}
 \end{figure}
 
@@ -66,14 +66,14 @@ Si queremos seguir agregando figuras solo copiar el código de figuras y tener s
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{recursos/Figure1b.png}
-    \caption{\textbf{Modelo de las Figuras 1b \cite{upm56279}}}
+    \caption{Modelo de las Figuras 1b \cite{upm56279}}
     \label{fig:figura1a}
 \end{figure}
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{recursos/Figure2.png}
-    \caption{\textbf{Modelo de las Figuras 2 \cite{upm56279}}}
+    \caption{Modelo de las Figuras 2 \cite{upm56279}}
     \label{fig:figura1a}
 \end{figure}
 
@@ -105,7 +105,7 @@ Importante decir que para hacer las referncias en los texto se debe utilizar el 
 \section{Algoritmos}
 El Algoritmo \ref{alg:getDelay} ilustra la forma que debe adoptarse. Se usa el paquete \textit{algorithmic}. Los comandos pueden consultarse en \url{https://en.wikibooks.org/wiki/LaTeX/Algorithms} o en la documentación oficial.
 
-\begin{algorithm}[htbp]
+\begin{algorithm}[!htbp]
 	\begin{algorithmic}
 	\REQUIRE $t_0$ = instante en el que se genera el retardo
 	
@@ -125,6 +125,57 @@ El Algoritmo \ref{alg:getDelay} ilustra la forma que debe adoptarse. Se usa el p
 	
 	\RETURN delay
 	\end{algorithmic}
-	\caption{\textbf{Algoritmo para ver los retardos - $getDelay(t_0)$}}
+	\caption{Algoritmo para ver los retardos - $getDelay(t_0)$}
 	\label{alg:getDelay}
 \end{algorithm}
+
+
+\newpage
+\begin{lstlisting}[caption={Esquema de mensajería}, label={lst:esqMsj},basicstyle=\small]
+// Mensajeria.scala
+case object RecibirEntidad
+case object Predecir
+case object Respuesta
+object Mensajeria {
+  implicit val system = ActorSystem()
+  implicit val materializer = ActorMaterializer()
+  import system.dispatcher
+  //Actor Centinela
+  class Centinela(administrador: ActorRef, paciente: Paciente) extends Actor{
+    def receive = {
+      case RecibirEntidad =>
+        println(s"${self.path} recibe la entidad para predecir Anemia")
+        administrador ! paciente
+      case respuesta: Prediction =>
+         println(s"${self.path} procesa ${respuesta.idPaciente} 
+         tiene anemia: ${respuesta.resultado} ")
+        val url =s"http://localhost:1026/v2/entities/${respuesta.idPaciente}
+        /attrs/hasAnaemia/value"
+        val timeout = 1800
+        val requestConfig = RequestConfig.custom()
+          .setConnectTimeout(timeout*1000)
+          .setConnectionRequestTimeout(timeout*1000)
+          .setSocketTimeout(timeout*1000).build()
+        val client = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build()
+        val put:HttpPut = new HttpPut(url)
+          put.addHeader("Content-Type", "text/plain(UTF-8)")
+          put.setEntity(new StringEntity(respuesta.resultado.toString))
+        val response:CloseableHttpResponse = client.execute(put)
+      case _ =>
+        println(s"${self.path} no logró terminar la operación")
+    }
+  }
+  //Actor Administrador
+  class Administrador(config: SparkConf) extends Actor{
+    def receive = {
+      case predecir: Paciente =>
+        val p= predecir.entrenar(config)
+        println(s"${self.path} confirma predicción realizada con resultado: "+p)
+        sender() ! p
+      case _ =>
+        println(s"${self.path} no hizo nada")
+    }
+  }
+}
+
+\end{lstlisting}

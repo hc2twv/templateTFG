@@ -60,6 +60,10 @@ BoldItalicFont=arialbi.ttf,
 \floatname{algorithm}{Algoritmo}
 \renewcommand{\listalgorithmname}{\'INDICE DE ALGORITMOS}
 
+\usepackage{listings}
+\renewcommand{\lstlistingname}{C\'odigo}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{\'INDICE DE CODIGOS DE PROGRAMA}
+
 \usepackage{multirow}
 
 \usepackage{tikz}
@@ -154,6 +158,9 @@ BoldItalicFont=arialbi.ttf,
 \addcontentsline{toc}{chapter}{\listalgorithmname}
 \listofalgorithms 
 
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% CUERPO DEL TFG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \mainmatter
 
@@ -187,12 +194,13 @@ BoldItalicFont=arialbi.ttf,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% APÉNDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \appendix
+\clearpage
 \renewcommand{\appendixtocname}{AP\'ENDICES}
 \renewcommand{\appendixname}{AP\'ENDICES}
 \renewcommand{\appendixpagename}{AP\'ENDICES}
+\renewcommand{\thesection}{\Alph{section}}
 \addappheadtotoc
 \appendixpage
-
 \include*{apendices}
 
 
