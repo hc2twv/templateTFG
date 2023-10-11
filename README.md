@@ -5,7 +5,7 @@
 
 # Plantilla de Trabajo Final de Grado para las carreras ESPOL
 
-<p>Creada por la Carrera de Ingeniería en Telemática</p>
+<p>Creado por la Carrera de Ingeniería en Telemática</p>
 
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/) [![GitHub release](https://img.shields.io/github/release/hc2twv/templateTFG.svg)](https://GitHub.com/hc2twv/templateTFG/releases/) [![GitHub watchers](https://img.shields.io/github/watchers/hc2twv/templateTFG.svg?label=Watch&style=social)](https://GitHub.com/hc2twv/templateTFG)
 
