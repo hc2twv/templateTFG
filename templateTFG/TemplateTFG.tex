@@ -84,8 +84,6 @@ BoldItalicFont=arialbi.ttf,
 \renewcommand{\tablename}{Tabla}
 \renewcommand{\figurename}{Figura}
 
-
-
 %--- AJUSTES MANUALES PARA CODIGOS ---%
 
 \usepackage{listings}
@@ -111,7 +109,15 @@ BoldItalicFont=arialbi.ttf,
   breakatwhitespace=true,
   tabsize=3
  }
- 
+
+% En el front-end al final de los usepackages
+\usepackage[natbib=true,backend=biber,sorting=nyt,style=apa]{biblatex}
+\renewcommand*{\bibfont}{\fontsize{10}{12}\selectfont}
+
+% add your references to this file
+% Si pusieron otro nombre al archivo BiBteX usen ese :P
+\addbibresource{referencias.bib}
+
 \renewcommand\maketitle{}
 
 
@@ -172,7 +178,7 @@ BoldItalicFont=arialbi.ttf,
 \include*{cap01}
 % CONTENIDOS DEL TFG
 \include*{cap02}
-% REFERENCIAS
+% REFERENCES
 \include*{cap03}
 % CONCLUSIONES Y LÍNEAS FUTURAS DE TRABAJO
 \include*{cap04}
@@ -188,8 +194,10 @@ BoldItalicFont=arialbi.ttf,
 %%% Bibliografía bibname
 \renewcommand{\bibname}{BIBLIOGRAF\'IA}
 \addcontentsline{toc}{chapter}{BIBLIOGRAF\'IA} % Para que salga en el índice general
-\bibliographystyle{ieeetr}
-\bibliography{referencias}
+%\bibliographystyle{ieeetr}
+%\bibliography{referencias}
+
+\printbibliography{}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% APÉNDICES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

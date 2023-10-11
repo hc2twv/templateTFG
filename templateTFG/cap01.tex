@@ -1,8 +1,9 @@
 \chapter{INTRODUCCI\'ON}
 \thispagestyle{empty}
+\label{chapter:introduction}
 
 El título del proyecto no debe exceder los 120 caracteres.
-El título debe llamar la atención e interés sobre el trabajo desarrollado. Debe ser conciso, pertinente con la información que se presenta, exacto en el uso de términos técnicos, emplear el menor número de palabras posible y evitar la utilización de siglas, acrónimos y cualquier otra expresión redundante que pueda restarle rigor. 
+El título debe llamar la atención e interés sobre el trabajo desarrollado. Debe ser conciso, pertinente con la información que se presenta, exacto en el uso de términos técnicos, emplear el menor número de palabras posible y evitar la utilización de siglas, acrónimos y cualquier otra expresión redundante que pueda restarle rigor \ref{chapter:introduction}. 
 
 Un título puede ser:
 \begin{itemize}
@@ -37,7 +38,7 @@ Modelo de Tablas, para referencia la tabla se usa el (label) y se lo llama asi: 
 
 \begin{table}[!htbp]
 \centering
-\small
+\large
 \caption{{\fontsize{11pt}{13}\selectfont Modelo General de las Tablas \cite{upm56279}}}
 \label{tbl:modelo}
 \begin{tabular}{@{}cccc@{}}
@@ -48,6 +49,7 @@ Texto              & Texto              & Texto              & Texto            
 Texto              & Texto              & Texto              & Texto              \\ \bottomrule
 \end{tabular}
 \end{table}
+
 
 \subsubsection{Figuras/Gráficos:}
 Modelo de las Figuras, para referenciar las figuras se usa el (label) y se lo llama así: Fig. \ref{fig:figura1a}, la referencia y el label sirven para hacer la referencia cruzada con el indice de las figuras
@@ -61,7 +63,7 @@ Modelo de las Figuras, para referenciar las figuras se usa el (label) y se lo ll
     \label{fig:figura1a}
 \end{figure}
 
-Si queremos seguir agregando figuras solo copiar el código de figuras y tener siempre la etiqueta centering y [!htbp]
+Si queremos seguir agregando\footnote{https://www.eluniverso.com/} figuras solo copiar el código de figuras y tener siempre la etiqueta centering y [!htbp]
 
 \begin{figure}[!htbp]
     \centering
@@ -72,10 +74,12 @@ Si queremos seguir agregando figuras solo copiar el código de figuras y tener s
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.85\linewidth]{recursos/Figure2.png}
+    \includegraphics[width=0.9\textwidth]{recursos/Figure2.png}
     \caption{Modelo de las Figuras 2 \cite{upm56279}}
     \label{fig:figura1a}
 \end{figure}
+
+
 
 \section{Ecuaciones}
 Si el autor utiliza ecuaciones en su documento, podrá seguir el siguiente formato: (x,z) donde x es el número del capítulo y z el número en orden de aparición de la ecuación. Como ejemplo, ver la ecuación 2.1.
